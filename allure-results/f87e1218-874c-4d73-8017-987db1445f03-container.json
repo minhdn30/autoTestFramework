@@ -1,0 +1,1 @@
+{"uuid":"f87e1218-874c-4d73-8017-987db1445f03","name":"autoTest.CleanUp","children":["fa6989c7-5c3b-4806-8aea-cd4433155d3b"],"description":"","befores":[],"afters":[{"name":"CleanUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1708415011693,"stop":1708415011693}],"links":[],"start":1708415011693,"stop":1708415011693}

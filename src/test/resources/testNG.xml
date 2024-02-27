@@ -1,0 +1,13 @@
+<suite name="MySuite">
+    <test name="MyTest">
+        <classes>
+            <class name="testcase.TestCase1">
+                <methods>
+                    <include name="loginTest" />
+                    <include name="openTournamentManagerTest" />
+                    <include name="createTournamentTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
