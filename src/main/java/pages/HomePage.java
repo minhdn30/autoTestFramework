@@ -5,7 +5,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.io.IOException;
+import java.util.Properties;
 
 public class HomePage extends PageBase {
     public HomePage(WebDriver driver) {
@@ -13,7 +15,7 @@ public class HomePage extends PageBase {
     }
     @FindBy(xpath = "/html/body/div/div/div/div[1]/div[3]/nav/div[1]/section/div[1]/div/div[5]/div")
     public WebElement buttonOperateOnlive;
-    @FindBy(xpath = "/html/body/div/div/div/div[1]/div[2]/nav/div[1]/section/div[1]/div/div[5]/div[2]/a[6]")
+    @FindBy(xpath = "//*[@id=\"app\"]/div/nav/div[1]/section/div[1]/div/div[5]/div[2]/a[6]")
     public WebElement buttonOpenMatchManage;
     public void openTournamentManager() throws InterruptedException {
         System.out.println(driver.getTitle());

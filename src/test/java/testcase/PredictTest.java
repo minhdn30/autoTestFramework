@@ -15,28 +15,10 @@ public class PredictTest extends TestBase {
     ControlPage controlPage;
     StreamPage streamPage;
     PredictFramePage predictFramePage;
-    String usernameCMS = "minhdn";
-    String passwordCMS ="vtvlive@123";
-    String nameOfTournament = "Minh Test 1";
-    String nameOfStreamer = "minhdn211002";
-    String matchName = "Tran Dau 1";
-    String matchOnG = "0";
-    String matchScore = "10";
-    String matchTeam1Name = "Doi 1";
-    String matchTeam2Name = "Doi 2";
-    String linkLogoTeam1 = "\"C:\\Users\\admin\\Desktop\\imageSup\\1.jpg\"";
-    String linkLogoTeam2 = "\"C:\\Users\\admin\\Desktop\\imageSup\\3.jpg\"";
-    String textQuestion = "Cau hoi dau tri";
-    String textAnsA = "Dap an A...";
-    String textAnsB = "Dap an B...";
-    String textOnG = "0";
-    String usernameStream = "aftv_onlive062";
-    String passwordStream = "Onlive#2023";
-    String numberOfPredicted = "100";
     @Test
     public void PredictTestCase() throws InterruptedException {
         loginCMSPage = new LoginCMSPage(driver);
-        loginCMSPage.loginCMS(usernameCMS, passwordCMS);
+        loginCMSPage.loginCMS(inp.getProperty("username_cms"), inp.getProperty("password_cms"));
         Thread.sleep(2000);
         String window1Handle = driver.getWindowHandle();
         homePage = new HomePage(driver);
@@ -44,15 +26,17 @@ public class PredictTest extends TestBase {
         Thread.sleep(1000);
 
         tournamentManagePage = new TournamentManagePage(driver);
-        tournamentManagePage.createTournament(nameOfTournament, nameOfStreamer);
+        tournamentManagePage.createTournament(inp.getProperty("tournament_name"), inp.getProperty("streamer_name"));
         Thread.sleep(2000);
 
         matchManagePage = new MatchManagePage(driver);
-        matchManagePage.createMatch(matchName, matchOnG, matchScore, matchTeam1Name, matchTeam2Name, linkLogoTeam1, linkLogoTeam2);
+        matchManagePage.createMatch(inp.getProperty("match_name"), inp.getProperty("match_ong"), inp.getProperty("match_score"),
+                inp.getProperty("matchteam1_name"), inp.getProperty("matchteam2_name"), inp.getProperty("linklogoteam1"), inp.getProperty("linklogoteam2"));
         Thread.sleep(1000);
 
         predictQuestionManagePage = new PredictQuestionManagePage(driver);
-        predictQuestionManagePage.createPredictQuestion(textQuestion, textAnsA, textAnsB, textOnG);
+        predictQuestionManagePage.createPredictQuestion(inp.getProperty("predict_question"), inp.getProperty("predict_ansa"),
+                inp.getProperty("predict_ansb"), inp.getProperty("predict_ong"));
         Thread.sleep(1000);
 
         controlPage = new ControlPage(driver);
@@ -63,21 +47,23 @@ public class PredictTest extends TestBase {
         driver.get(prop.getProperty("testurl2"));
         String window2Handle = driver.getWindowHandle();
         streamPage = new StreamPage(driver);
-        streamPage.openAndLoginStreamPage(usernameStream, passwordStream);
+        streamPage.openAndLoginStreamPage(inp.getProperty("username_onlive"), inp.getProperty("password_onlive"));
         Thread.sleep(10000);
         streamPage.openPredictFrame();
         predictFramePage = new PredictFramePage(driver);
-        predictFramePage.checkOutputPredictFrame(textQuestion,textAnsA,textAnsB);
+        predictFramePage.checkOutputPredictFrame(inp.getProperty("predict_question"), inp.getProperty("predict_ansa"),
+                inp.getProperty("predict_ansb"));
 
-        predictFramePage.checkPredict1(numberOfPredicted, textAnsA);
+        predictFramePage.checkPredict1(inp.getProperty("number_predicted"), inp.getProperty("predict_ansa"));
         //sau khi click button choi lai, check output lan 2
-        predictFramePage.checkOutputPredictFrame(textQuestion,textAnsA,textAnsB);
-        predictFramePage.sendPredict(numberOfPredicted);
+        predictFramePage.checkOutputPredictFrame(inp.getProperty("predict_question"), inp.getProperty("predict_ansa"),
+                inp.getProperty("predict_ansb"));
+        predictFramePage.sendPredict(inp.getProperty("number_predicted"));
         //kiem tra sau khi cho 7 giay, frame dau tri da an di hay chua
         streamPage.checkFramePredictDisplay();
 
         streamPage.openPredictFrame();
-        predictFramePage.checkHiddenButton(numberOfPredicted);
+        predictFramePage.checkHiddenButton(inp.getProperty("number_predicted"));
         streamPage.checkFramePredictDisplay();
         //kiem tra trang thai btn dau tri la normal, click btn power tren cms, quay lai kiem tra trang thai btn dau tri la power.
         streamPage.checkStatusPredictBtnBefore();
