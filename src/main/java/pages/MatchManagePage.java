@@ -54,6 +54,7 @@ public class MatchManagePage extends PageBase{
         clickButton(buttonOKTime);
         Thread.sleep(500);
         clickButton(buttonLogoTeam1);
+        //use sikulix
         Screen screen = new Screen();
         screen.type(linkLogoTeam1);
         screen.type(Key.ENTER);

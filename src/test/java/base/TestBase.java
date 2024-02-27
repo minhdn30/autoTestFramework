@@ -27,11 +27,12 @@ public class TestBase {
     public void setUp() throws IOException {
         if (driver == null) {
             fr = new FileReader("C:\\Users\\admin\\IdeaProjects\\autoTestFramework\\src\\test\\java\\config\\config.properties");
-            fr1 = new FileReader("C:\\Users\\admin\\IdeaProjects\\autoTestFramework\\src\\test\\java\\config\\locators.properties");
-            fr2 = new FileReader("C:\\Users\\admin\\IdeaProjects\\autoTestFramework\\src\\test\\java\\config\\inputdata.properties");
+            fr1 = new FileReader("C:\\Users\\admin\\IdeaProjects\\autoTestFramework\\src\\test\\java\\config\\input.properties");
+            fr2 = new FileReader("C:\\Users\\admin\\IdeaProjects\\autoTestFramework\\src\\test\\java\\config\\locators.properties");
             prop.load(fr);
-            loc.load(fr1);
-            inp.load(fr2);
+            inp.load(fr1);
+            loc.load(fr2);
+
             if (prop.getProperty("browser").equalsIgnoreCase("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
