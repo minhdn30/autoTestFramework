@@ -53,7 +53,9 @@ public class ControlPage extends PageBase{
     @FindBy(className = "buttonSubmit")
     WebElement buttonConfirmAnsMiniGame;
     @FindBy(xpath = "(//span[@class='v-btn__content'])[last()-7]")
-    WebElement buttonFinishMatch;
+    WebElement buttonFinishPredictMatch;
+    @FindBy(xpath = "(//span[@class='v-btn__content'])[last()-6]")
+    WebElement buttonFinishMiniGameMatch;
     @FindBy(xpath = "(//span[@class='v-btn__content'])[last()-1]")
     WebElement buttonConfirmFinishMatch;
     public void sendPredictQuestion() throws InterruptedException {
@@ -96,8 +98,13 @@ public class ControlPage extends PageBase{
         clickButton(buttonChooseAnsAMiniGame);
         clickButton(buttonConfirmAnsMiniGame);
     }
-    public void finishMatch() throws InterruptedException {
-        clickButton(buttonFinishMatch);
+    public void finishPredictMatch() throws InterruptedException {
+        clickButton(buttonFinishPredictMatch);
+        Thread.sleep(1000);
+        clickButton(buttonConfirmFinishMatch);
+    }
+    public void finishMiniGameMatch() throws InterruptedException {
+        clickButton(buttonFinishMiniGameMatch);
         Thread.sleep(1000);
         clickButton(buttonConfirmFinishMatch);
     }

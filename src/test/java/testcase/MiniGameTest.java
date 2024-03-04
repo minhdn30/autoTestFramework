@@ -49,7 +49,7 @@ public class MiniGameTest extends TestBase {
         //login onlive
         streamPage = new StreamPage(driver);
         streamPage.openAndLoginStreamPage(inp.getProperty("username_onlive"), inp.getProperty("password_onlive"));
-        Thread.sleep(10000);
+        Thread.sleep(15000);
         miniGameFramePage = new MiniGameFramePage(driver);
         miniGameFramePage.switchToMiniGameFrame();
         miniGameFramePage.checkOutputDisplay(inp.getProperty("minigame_question"), inp.getProperty("minigame_ansa"),
@@ -63,8 +63,8 @@ public class MiniGameTest extends TestBase {
         //set answer, finish match, delete tournament
         switchWindow(window1Handle);
         controlPage.finishMiniGameAndSetAns();
-        controlPage.finishMatch();
-        tournamentManagePage.deleteTournament();
+        controlPage.finishMiniGameMatch();
+        tournamentManagePage.deleteMiniGameTournament();
         //driver.quit();
     }
     public void switchWindow(String windowHandle) {

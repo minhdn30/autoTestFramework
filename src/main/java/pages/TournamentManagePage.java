@@ -11,8 +11,11 @@ public class TournamentManagePage extends PageBase {
     public TournamentManagePage(WebDriver driver) {
         super(driver);
     }
+
         @FindBy(xpath = "/html/body/div/div/div/div[1]/div[4]/main/div/div/div/div[2]/div/div[1]/div/div[2]/div/div[2]")
-        WebElement buttonOpenTournamentManage;
+        WebElement buttonOpenTournamentManagePredict;
+        @FindBy(xpath = "/html/body/div/div/div/div[1]/div[3]/main/div/div/div/div[2]/div/div[1]/div/div[2]/div/div[2]")
+        WebElement buttonOpenTournamentManageMiniGame;
         @FindBy(xpath = "/html/body/div/div/div/div[1]/div/main/div/div/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[1]/div[2]/button")
         WebElement buttonAddTournament;
         @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div[4]/div/div/div/form/div[1]/div[1]/div/div/div[1]/div/input")
@@ -49,8 +52,8 @@ public class TournamentManagePage extends PageBase {
             Thread.sleep(500);
             clickButton(buttonSaveDetailTournament);
         }
-        public void deleteTournament() throws InterruptedException {
-            clickButton(buttonOpenTournamentManage);
+        public void deletePredictTournament() throws InterruptedException {
+            clickButton(buttonOpenTournamentManagePredict);
             Thread.sleep(1000);
             clickButton(buttonDeleteTour);
             Thread.sleep(1000);
@@ -58,4 +61,13 @@ public class TournamentManagePage extends PageBase {
             //
             Thread.sleep(3000);
         }
+    public void deleteMiniGameTournament() throws InterruptedException {
+        clickButton(buttonOpenTournamentManageMiniGame);
+        Thread.sleep(1000);
+        clickButton(buttonDeleteTour);
+        Thread.sleep(1000);
+        clickButton(buttonConfirmDeleteTour);
+        //
+        Thread.sleep(3000);
+    }
 }

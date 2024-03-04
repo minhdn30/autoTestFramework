@@ -27,6 +27,7 @@ public class MiniGameFramePage extends PageBase{
     WebElement buttonAnsC;
 
     public void switchToMiniGameFrame(){
+        wait.until(ExpectedConditions.visibilityOf(miniGameFrame));
             driver.switchTo().frame(miniGameFrame);
     }
 
