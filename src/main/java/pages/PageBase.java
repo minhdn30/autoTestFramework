@@ -30,7 +30,6 @@ public class PageBase {
     }
     protected static void clickButton(WebElement button)
     {
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(button)).click();
     }
     protected static void sendKeysText(WebElement textElement,String value)

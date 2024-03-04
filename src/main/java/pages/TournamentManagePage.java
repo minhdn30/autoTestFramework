@@ -29,9 +29,9 @@ public class TournamentManagePage extends PageBase {
         WebElement buttonAddStreamer;
         @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div[4]/div/div/div/form/div[3]/div/button/span")
         WebElement buttonSaveDetailTournament;
-        @FindBy(xpath = "(//span[@class='v-btn--outlined'])[2]") //the span?
+        @FindBy(xpath = "(//span[@class='v-btn__content'])[5]")
         WebElement buttonDeleteTour;
-        @FindBy(xpath = "(//span[@class='v-btn--text'])[1]") //the span?
+        @FindBy(xpath = "(//span[@class='v-btn__content'])[last()-1]")
         WebElement buttonConfirmDeleteTour;
         public void createTournament(String nameOfTournament, String nameOfStreamer) throws InterruptedException {
             Thread.sleep(500);

@@ -1,13 +1,10 @@
 package pages;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import java.util.List;
-import java.util.Set;
 
 public class StreamPage extends PageBase{
     public StreamPage(WebDriver driver) {
@@ -32,16 +29,34 @@ public class StreamPage extends PageBase{
     WebElement statusPredictBtn;
     @FindBy(className = "box-lucky")
     List<WebElement> luckyBoxes;
+    @FindBy(xpath = "/html/body/div[1]/div[1]/div[2]/div[1]/div[4]/div[1]/button")
+    WebElement buttonLoginMore;
+    @FindBy(className = "logout")
+    WebElement buttonLogout;
+    @FindBy(xpath = "/html/body/main/div/div/div/div/div/div/button[2]")
+    WebElement buttonConfirmLogout;
 
-    public void openAndLoginStreamPage(String usernameStream, String passwordStream) throws InterruptedException {
+    public void openAndLoginStreamPage(String username, String password) throws InterruptedException {
         Thread.sleep(1000);
         clickButton(buttonLogin);
-        sendKeysText(inputTextUsername, usernameStream);
-        sendKeysText(inputTextPassword, passwordStream);
+        sendKeysText(inputTextUsername, username);
+        sendKeysText(inputTextPassword, password);
         clickButton(buttonLoginSubmit);
         Thread.sleep(1000);
         clickButton(buttonPlay);
         clickButton(buttonHere);
+    }
+    public void loginAnotherAccount(String username, String password) throws InterruptedException {
+        clickButton(buttonLoginMore);
+        clickButton(buttonLogout);
+        clickButton(buttonConfirmLogout);
+        clickButton(buttonLogin);
+        sendKeysText(inputTextUsername, username);
+        sendKeysText(inputTextPassword, password);
+        clickButton(buttonLoginSubmit);
+        Thread.sleep(1000);
+        clickButton(buttonPlay);
+
     }
     public void openPredictFrame(){
         clickButton(buttonOpenPredictFrame);
