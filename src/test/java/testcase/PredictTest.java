@@ -2,7 +2,6 @@ package testcase;
 import base.TestBase;
 
 import org.openqa.selenium.WindowType;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import pages.*;
 
@@ -42,8 +41,8 @@ public class PredictTest extends TestBase {
         Thread.sleep(1000);
         //send question to stream page
         controlPage = new ControlPage(driver);
-        controlPage.sendQuestion();
-        //open new window (onlive)
+        controlPage.sendPredictQuestion();
+
         driver.switchTo().newWindow(WindowType.WINDOW);
         driver.manage().window().maximize();
         driver.get(prop.getProperty("testurl2"));
@@ -55,6 +54,7 @@ public class PredictTest extends TestBase {
         //open predict frame
         streamPage.openPredictFrame();
         predictFramePage = new PredictFramePage(driver);
+        predictFramePage.switchToPredictFrame();
         //check output
         predictFramePage.checkOutputPredictFrame(inp.getProperty("predict_question"), inp.getProperty("predict_ansa"),
                 inp.getProperty("predict_ansb"));
@@ -77,6 +77,7 @@ public class PredictTest extends TestBase {
         switchWindow(window1Handle);
         controlPage.clickPoweBtn();
         switchWindow(window2Handle);
+        Thread.sleep(1000);
         streamPage.checkStatusPredictBtnAfter();
         //finish predict question, set answer
         switchWindow(window1Handle);
@@ -87,7 +88,7 @@ public class PredictTest extends TestBase {
         switchWindow(window1Handle);
         controlPage.finishMatch();
         tournamentManagePage.deleteTournament();
-        driver.quit();
+        //driver.quit();
 
     }
     public void switchWindow(String windowHandle) {
