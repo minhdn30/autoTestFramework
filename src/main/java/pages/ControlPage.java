@@ -54,7 +54,7 @@ public class ControlPage extends PageBase{
     WebElement buttonConfirmAnsMiniGame;
     @FindBy(xpath = "(//span[@class='v-btn__content'])[last()-7]")
     WebElement buttonFinishPredictMatch;
-    @FindBy(xpath = "(//span[@class='v-btn__content'])[last()-6]")
+    @FindBy(xpath = "(//span[@class='v-btn__content'])[last()-5]")
     WebElement buttonFinishMiniGameMatch;
     @FindBy(xpath = "(//span[@class='v-btn__content'])[last()-1]")
     WebElement buttonConfirmFinishMatch;
