@@ -64,7 +64,7 @@ public class MiniGameTest extends TestBase {
         switchWindow(window1Handle);
         controlPage.finishMiniGameAndSetAns();
         controlPage.finishMiniGameMatch();
-        tournamentManagePage.deleteMiniGameTournament();
+        tournamentManagePage.deleteMiniGameTournament(inp.getProperty("tournament_name"));
         //driver.quit();
     }
     public void switchWindow(String windowHandle) {

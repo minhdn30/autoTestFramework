@@ -104,7 +104,6 @@ public class ControlPage extends PageBase{
         clickButton(buttonConfirmFinishMatch);
     }
     public void finishMiniGameMatch() throws InterruptedException {
-        Thread.sleep(1000);
         clickButton(buttonFinishMiniGameMatch);
         Thread.sleep(1000);
         clickButton(buttonConfirmFinishMatch);

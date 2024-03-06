@@ -32,10 +32,16 @@ public class TournamentManagePage extends PageBase {
         WebElement buttonAddStreamer;
         @FindBy(xpath = "/html/body/div[1]/div/div/div[1]/div[4]/div/div/div/form/div[3]/div/button/span")
         WebElement buttonSaveDetailTournament;
-        @FindBy(xpath = "(//span[@class='v-btn__content'])[5]")
-        WebElement buttonDeleteTour;
+//        @FindBy(xpath = "//td[text()='Minh Test 1']/following-sibling::td[@class='text-center']//span[@class='v-btn__content']/i[@class='v-icon notranslate material-icons theme--light' and text()='delete']")
+//        WebElement buttonDeleteTour;
+
         @FindBy(xpath = "(//span[@class='v-btn__content'])[last()-1]")
         WebElement buttonConfirmDeleteTour;
+        public void clickButtonDeteleTour(String tournamentName) {
+            String xpath = String.format("//td[text()='%s']/following-sibling::td[@class='text-center']//span[@class='v-btn__content']/i[@class='v-icon notranslate material-icons theme--light' and text()='delete']", tournamentName);
+            WebElement buttonSendLuckyNumber = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+            buttonSendLuckyNumber.click();
+        }
         public void createTournament(String nameOfTournament, String nameOfStreamer) throws InterruptedException {
             Thread.sleep(500);
             clickButton(buttonAddTournament);
@@ -52,19 +58,19 @@ public class TournamentManagePage extends PageBase {
             Thread.sleep(500);
             clickButton(buttonSaveDetailTournament);
         }
-        public void deletePredictTournament() throws InterruptedException {
+        public void deletePredictTournament(String tournamentName) throws InterruptedException {
             clickButton(buttonOpenTournamentManagePredict);
             Thread.sleep(1000);
-            clickButton(buttonDeleteTour);
+            clickButtonDeteleTour(tournamentName);
             Thread.sleep(1000);
             clickButton(buttonConfirmDeleteTour);
             //
             Thread.sleep(3000);
         }
-    public void deleteMiniGameTournament() throws InterruptedException {
+    public void deleteMiniGameTournament(String tournamentName) throws InterruptedException {
         clickButton(buttonOpenTournamentManageMiniGame);
         Thread.sleep(1000);
-        clickButton(buttonDeleteTour);
+        clickButtonDeteleTour(tournamentName);
         Thread.sleep(1000);
         clickButton(buttonConfirmDeleteTour);
         //
