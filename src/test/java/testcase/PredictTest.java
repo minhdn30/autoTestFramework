@@ -86,7 +86,7 @@ public class PredictTest extends TestBase {
         switchWindow(window2Handle);
         streamPage.checkBtnPredictDisplay();
         switchWindow(window1Handle);
-        controlPage.finishPredictMatch();
+        controlPage.finishMatch();
         tournamentManagePage.deletePredictTournament(inp.getProperty("tournament_name"));
         //driver.quit();
 
