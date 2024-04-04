@@ -25,6 +25,8 @@ public class StreamPage extends PageBase{
     WebElement buttonHere;
     @FindBy(xpath = "/html/body/div[1]/div[2]/div/div[1]/div[1]/div/div[2]/div[24]/div")
     WebElement buttonOpenPredictFrame;
+    @FindBy(className = "box-lucky")
+    WebElement buttonOpenLuckyNumberFrame;
     @FindBy(className = "normal")
     WebElement statusPredictBtn;
     @FindBy(className = "box-lucky")
@@ -56,11 +58,14 @@ public class StreamPage extends PageBase{
         clickButton(buttonLoginSubmit);
         Thread.sleep(1000);
         clickButton(buttonPlay);
-
     }
     public void openPredictFrame(){
         clickButton(buttonOpenPredictFrame);
     }
+    public void openLuckyNumberFrame(){
+        clickButton(buttonOpenLuckyNumberFrame);
+    }
+
     public void checkFramePredictDisplay() throws InterruptedException {
         driver.switchTo().defaultContent();
         Thread.sleep(7000);

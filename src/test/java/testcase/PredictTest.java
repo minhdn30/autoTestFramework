@@ -8,9 +8,8 @@ import pages.*;
 public class PredictTest extends TestBase {
     LoginCMSPage loginCMSPage;
     HomePage homePage;
-    TournamentManagePage tournamentManagePage;
-    MatchManagePage matchManagePage;
-    PredictQuestionManagePage predictQuestionManagePage;
+    PredictQuestionPage predictQuestionPage;
+    PredictManagePage predictManagePage;
     ControlPage controlPage;
     StreamPage streamPage;
     PredictFramePage predictFramePage;
@@ -22,27 +21,15 @@ public class PredictTest extends TestBase {
         Thread.sleep(2000);
         String window1Handle = driver.getWindowHandle();
         homePage = new HomePage(driver);
-        homePage.openTournamentManager();
         Thread.sleep(1000);
-        //create and add tournament
-        tournamentManagePage = new TournamentManagePage(driver);
-        tournamentManagePage.createTournament(inp.getProperty("tournament_name"), inp.getProperty("streamer_name"));
-        Thread.sleep(2000);
-        //create and add match
-        matchManagePage = new MatchManagePage(driver);
-        matchManagePage.createMatch(inp.getProperty("match_name"), inp.getProperty("match_ong"), inp.getProperty("match_score"),
-                inp.getProperty("matchteam1_name"), inp.getProperty("matchteam2_name"), inp.getProperty("linklogoteam1"),
-                inp.getProperty("linklogoteam2"));
+        //create and send predict question
+        homePage.openPredict();
+        predictManagePage = new PredictManagePage(driver);
+        predictManagePage.openAddPredictQuestionFrame();
+        predictQuestionPage = new PredictQuestionPage(driver);
+        predictQuestionPage.createAndSendPredictQuestion(inp.getProperty("predict_nameofevent"),inp.getProperty("predict_question"), inp.getProperty("predict_ansa"),
+                inp.getProperty("predict_ansb"), inp.getProperty("predict_ong"), inp.getProperty("streamer_name"));
         Thread.sleep(1000);
-        //create and add predict question
-        predictQuestionManagePage = new PredictQuestionManagePage(driver);
-        predictQuestionManagePage.createPredictQuestion(inp.getProperty("predict_question"), inp.getProperty("predict_ansa"),
-                inp.getProperty("predict_ansb"), inp.getProperty("predict_ong"));
-        Thread.sleep(1000);
-        //send question to stream page
-        controlPage = new ControlPage(driver);
-        controlPage.sendPredictQuestion();
-
         driver.switchTo().newWindow(WindowType.WINDOW);
         driver.manage().window().maximize();
         driver.get(prop.getProperty("testurl2"));
@@ -50,7 +37,7 @@ public class PredictTest extends TestBase {
         //login onlive
         streamPage = new StreamPage(driver);
         streamPage.openAndLoginStreamPage(inp.getProperty("username_onlive"), inp.getProperty("password_onlive"));
-        Thread.sleep(10000);
+        Thread.sleep(25000);
         //open predict frame
         streamPage.openPredictFrame();
         predictFramePage = new PredictFramePage(driver);
@@ -75,19 +62,18 @@ public class PredictTest extends TestBase {
         //---> status = power
         streamPage.checkStatusPredictBtnBefore();
         switchWindow(window1Handle);
-        controlPage.clickPoweBtn();
+        predictQuestionPage.clickPowerBtn(inp.getProperty("predict_nameofevent"));
         switchWindow(window2Handle);
         Thread.sleep(1000);
         streamPage.checkStatusPredictBtnAfter();
         //finish predict question, set answer
         switchWindow(window1Handle);
-        controlPage.finishPredictAndSetAns();
+        predictQuestionPage.finishPredictAndSetAns(inp.getProperty("predict_nameofevent"));
         //check btn predict hidden or not
         switchWindow(window2Handle);
+        Thread.sleep(1000);
         streamPage.checkBtnPredictDisplay();
         switchWindow(window1Handle);
-        controlPage.finishMatch();
-        tournamentManagePage.deletePredictTournament(inp.getProperty("tournament_name"));
         //driver.quit();
 
     }
